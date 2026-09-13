@@ -28,6 +28,15 @@ public class LoginScreen extends BaseScreen {
     @AndroidFindBy(accessibility = "button-SIGN UP")
     private WebElement btnSignUp;
 
+    @AndroidFindBy(id = "android:id/alertTitle")
+    private WebElement dialogTitle;
+
+    @AndroidFindBy(id = "android:id/message")
+    private WebElement dialogMessage;
+
+    @AndroidFindBy(id = "android:id/button1")
+    private WebElement dialogOkButton;
+
     public LoginScreen(AndroidDriver driver){
         super(driver);
     }
@@ -63,4 +72,22 @@ public class LoginScreen extends BaseScreen {
         goToSignUpTab();
         return isElementAvailable(inputEmail)&&isElementAvailable(inputRepeatPassword)&&isElementAvailable(btnSignUp);
     }
+
+    public boolean isConfirmationDialogDisplayed() {
+        return isElementAvailable(dialogTitle) && isElementAvailable(dialogMessage);
+    }
+
+    public String getDialogTitle() {
+        return dialogTitle.getText();
+    }
+
+    public String getDialogMessage() {
+        return dialogMessage.getText();
+    }
+
+    public void acceptDialog() {
+        click(dialogOkButton);
+    }
+
+
 }

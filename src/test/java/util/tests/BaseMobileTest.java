@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import screens.HomeScreen;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -13,6 +14,7 @@ import java.time.Duration;
 
 public class BaseMobileTest {
     protected static AndroidDriver driver;
+    protected static HomeScreen homeScreen;
     protected static final Logger log = LoggerFactory.getLogger(BaseMobileTest.class);
     private static final String APPIUM_SERVER_URL= "http://127.0.0.1:4723";
     private static final String APP_PACKAGE = "com.wdiodemoapp";
@@ -21,7 +23,8 @@ public class BaseMobileTest {
     @BeforeClass
     public void setUpStartApp(){
         environmentSetUp();
-       log.info("Sesion de Appium iniciada correctamente");
+        homeScreen = new HomeScreen(driver);
+        log.info("Sesion de Appium iniciada correctamente");
     }
 
     protected void environmentSetUp(){
