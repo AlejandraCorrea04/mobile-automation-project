@@ -10,7 +10,7 @@ public class HomeScreen extends BaseScreen implements AlertHandler {
     @AndroidFindBy(accessibility = "Home")
     private WebElement tabHome;
 
-    @AndroidFindBy(accessibility ="Webview")
+    @AndroidFindBy(accessibility = "Webview")
     private WebElement tabWebview;
 
     @AndroidFindBy(accessibility = "Login")
@@ -19,36 +19,40 @@ public class HomeScreen extends BaseScreen implements AlertHandler {
     @AndroidFindBy(accessibility = "Forms")
     private WebElement tabForms;
 
-    @AndroidFindBy(accessibility ="Swipe")
+    @AndroidFindBy(accessibility = "Swipe")
     private WebElement tabSwipe;
+
+    @AndroidFindBy(accessibility = "Drag")
+    private WebElement tabDrag;
 
     @AndroidFindBy(id = "android:id/button1")
     private WebElement btnSystemDialogOk;
 
-    public HomeScreen(AndroidDriver driver){
+    public HomeScreen(AndroidDriver driver) {
         super(driver);
         alertControl();
     }
 
     @Override
-    public void alertControl(){
-        if(isElementAvailable(btnSystemDialogOk)){
+    public void alertControl() {
+        if (isElementAvailable(btnSystemDialogOk)) {
             click(btnSystemDialogOk);
         }
     }
 
-    public void  goToWebview(){
+    public void goToWebview() {
         click(tabWebview);
     }
 
-    public void goToForms(){
+    public void goToForms() {
         click(tabForms);
     }
-    public void goToDrag(){
+
+    public void goToDrag() {
         click(tabDrag);
     }
 
-    public LoginScreen goToLogin(){
+    public LoginScreen goToLogin() {
         click(tabLogin);
         return new LoginScreen(driver);
     }
@@ -58,7 +62,7 @@ public class HomeScreen extends BaseScreen implements AlertHandler {
         return new SwipeScreen(driver);
     }
 
-    public boolean isHomeScreenDisplayed(){
+    public boolean isHomeScreenDisplayed() {
         return isElementAvailable(tabHome);
     }
 }
