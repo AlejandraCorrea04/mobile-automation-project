@@ -6,15 +6,29 @@ import screens.LoginScreen;
 import util.data.RandomDataGenerator;
 import util.tests.BaseMobileTest;
 
+/**
+ * Contiene los casos de prueba automatizados para validar el flujo de inicio de sesión exitoso (Login).
+ *
+ * @author Alejandra Correa
+ * @version 1.0
+ */
 public class LoginTest extends BaseMobileTest {
 
+    /**
+     * Valida que un usuario registrado previamente pueda iniciar sesión de manera exitosa en la aplicación.
+     * <p>
+     * Como precondición, realiza primero un registro dinámico para mantener la independencia del test.
+     * Posteriormente, completa el formulario de Login y aserta que aparezca el mensaje de éxito
+     * con los textos "Success" y "You are logged in!".
+     * </p>
+     */
     @Test(description = "Un usuario previamente registrado puede loguearse exitosamente")
     public void successfulLogin() {
         String email = RandomDataGenerator.generateRandomEmail();
         String password = RandomDataGenerator.defaultPassword();
 
         LoginScreen loginScreen = homeScreen.goToLogin();
-        loginScreen.signUp(email,password);
+        loginScreen.signUp(email, password);
 
         Assert.assertTrue(loginScreen.isConfirmationDialogDisplayed(),
                 "Debería confirmarse el signup previo antes de intentar loguear");
@@ -35,5 +49,4 @@ public class LoginTest extends BaseMobileTest {
 
         loginScreen.acceptDialog();
     }
-
-    }
+}
